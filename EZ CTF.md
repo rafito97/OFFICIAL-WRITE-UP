@@ -1,4 +1,4 @@
-EZ CTF
+Write Up
 
 
 [Task 1] Nmap

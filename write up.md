@@ -19,10 +19,8 @@ Nmap done: 1 IP address (1 host up) scanned in 41.02 seconds
 1. How many ports are open ?
 	2
 
-
 2. What is the title of the running web server ?
 	Violet Evergarden!!!!
-
 
 3. What is ssh port ?
 	22
@@ -32,24 +30,9 @@ Nmap done: 1 IP address (1 host up) scanned in 41.02 seconds
 
 command : gobuster -u 10.10.255.253 -w /home/rafito/Documents/wordlist/directory-list-2.3-medium.txt -x txt -t 100
 
-=====================================================
-Gobuster v2.0.1              OJ Reeves (@TheColonial)
-=====================================================
-[+] Mode         : dir
-[+] Url/Domain   : http://10.10.255.253/
-[+] Threads      : 100
-[+] Wordlist     : /home/rafito/Documents/wordlist/directory-list-2.3-medium.txt
-[+] Status codes : 200,204,301,302,307,403
-[+] Extensions   : txt
-[+] Timeout      : 10s
-=====================================================
-2020/11/14 22:46:30 Starting gobuster
-=====================================================
 /robots.txt (Status: 200)
 Progress: 2147 / 220561 (0.97%)^C
-=====================================================
-2020/11/14 22:46:44 Finished
-=====================================================
+
 
 1. Run gobuster
 
@@ -59,7 +42,7 @@ Progress: 2147 / 220561 (0.97%)^C
 3. What is the secret directory ?
 	/robots.txt
 
-4. Lets check out the secret directory\
+4. Lets check out the secret directory
 
 
 [Task 3] SSH
@@ -87,7 +70,7 @@ Progress: 2147 / 220561 (0.97%)^C
 
 4. What is the root password ? 
 	vybirlbh
-	(this is a rot code, decode it)
+	(this is a rot13 code, decode it)
 	real answer : iloveyou
 
 

